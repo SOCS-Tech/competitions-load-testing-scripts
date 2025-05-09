@@ -1,15 +1,15 @@
 import os
 import logging
 
-def get_competitions(client, token, host, timeout_duration, DEBUG_MODE):
+def get_fixtures(client, token, host, timeout_duration, DEBUG_MODE):
     """
-    Perform a GET request to fetch competitions.
+    Perform a GET request to fetch fixtures.
     """
     if not token:
         logging.error("Bearer token is missing. Skipping request.")
         return
 
-    url = f"{host}/api/competitions"
+    url = f"{host}/api/fixtures"
     headers = {
         "Content-Type": "application/json",
         "Authorization": f"Bearer {token}"
@@ -18,7 +18,7 @@ def get_competitions(client, token, host, timeout_duration, DEBUG_MODE):
     with client.get(
         url=url,
         headers=headers,
-        name="Get Competitions",
+        name="Get Fixtures",
         catch_response=True,
         timeout=timeout_duration
     ) as response:

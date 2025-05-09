@@ -4,13 +4,14 @@ from locust import HttpUser, task, between
 from dotenv import load_dotenv
 from utils.token_utils import get_bearer_token
 from tasks.competitions import get_competitions
+from tasks.fixtures import get_fixtures
 
 # Load environment variables
 load_dotenv()
 
 class CompetitionsUser(HttpUser):
     wait_time = between(1, 3)
-    host = "https://api.socscompetition.com/api/competitions"
+    host = "https://api.socscompetition.com"
     auth_host = "https://auth.socscompetition.com"
     timeout_duration = 90
     DEBUG_MODE = os.getenv('DEBUG_MODE', 'True') == 'True'
@@ -30,6 +31,14 @@ class CompetitionsUser(HttpUser):
     @task
     def run_scenarios(self):
         get_competitions(
+            client=self.client,
+            token=self.token,
+            host=self.host,
+            timeout_duration=self.timeout_duration,
+            DEBUG_MODE=self.DEBUG_MODE
+        )
+
+        get_fixtures(
             client=self.client,
             token=self.token,
             host=self.host,
