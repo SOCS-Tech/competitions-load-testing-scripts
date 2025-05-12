@@ -5,6 +5,11 @@ from dotenv import load_dotenv
 from utils.token_utils import get_bearer_token
 from tasks.competitions import get_competitions
 from tasks.fixtures import get_fixtures
+from tasks.grades import get_grades
+from tasks.groups import get_groups
+from tasks.ladders import get_ladders
+from tasks.seasons import get_seasons
+from tasks.tournaments import get_tournaments
 
 # Load environment variables
 load_dotenv()
@@ -45,6 +50,47 @@ class CompetitionsUser(HttpUser):
             timeout_duration=self.timeout_duration,
             DEBUG_MODE=self.DEBUG_MODE
         )
+
+        get_grades(
+            client=self.client,
+            token=self.token,
+            host=self.host,
+            timeout_duration=self.timeout_duration,
+            DEBUG_MODE=self.DEBUG_MODE
+        )
+
+        get_groups(
+            client=self.client,
+            token=self.token,
+            host=self.host,
+            timeout_duration=self.timeout_duration,
+            DEBUG_MODE=self.DEBUG_MODE
+        )
+
+        get_ladders(
+            client=self.client,
+            token=self.token,
+            host=self.host,
+            timeout_duration=self.timeout_duration,
+            DEBUG_MODE=self.DEBUG_MODE
+        )
+
+        get_seasons(
+            client=self.client,
+            token=self.token,
+            host=self.host,
+            timeout_duration=self.timeout_duration,
+            DEBUG_MODE=self.DEBUG_MODE
+        )
+
+        get_tournaments(
+            client=self.client,
+            token=self.token,
+            host=self.host,
+            timeout_duration=self.timeout_duration,
+            DEBUG_MODE=self.DEBUG_MODE
+        )
+
 
     def on_stop(self):
         """
