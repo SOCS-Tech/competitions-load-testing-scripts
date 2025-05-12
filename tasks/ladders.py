@@ -14,10 +14,15 @@ def get_ladders(client, token, host, timeout_duration, DEBUG_MODE):
         "Content-Type": "application/json",
         "Authorization": f"Bearer {token}"
     }
+    # Add body with Compeitition ID
+    body = {
+        "competitionId": "84aa37d1-541d-03d9-1986-3a197924ccca"
+    }
 
     with client.get(
         url=url,
         headers=headers,
+        params=body,
         name="Get Ladders",
         catch_response=True,
         timeout=timeout_duration
