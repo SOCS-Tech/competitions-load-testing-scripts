@@ -27,7 +27,7 @@ def get_tournaments(client, token, host, timeout_duration, DEBUG_MODE):
             if DEBUG_MODE:
                 logging.info(f"GET {url} succeeded with response: {response.text}")
         elif response.status_code == 429:
-            response.success("Rate limit hit and 429 code received")
+            response.success()
             if DEBUG_MODE:
                 logging.warning(f"Rate limit hit: {response.text}")
         else:
